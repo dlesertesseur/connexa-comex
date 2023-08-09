@@ -6,11 +6,11 @@ import { useState } from "react";
 import { AppStateContext } from "./context/AppStateContext";
 import { Notifications } from "@mantine/notifications";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { useTranslation } from "react-i18next";
+import ResponceNotification from "./components/ResponceNotification";
 import SignIn from "./pages/SignIn";
 import NotFound from "./pages/NotFound";
 import Main from "./pages/Main";
-import ResponceNotification from "./components/ResponceNotification";
-import { useTranslation } from "react-i18next";
 
 function App() {
   const {t} = useTranslation();
@@ -24,6 +24,7 @@ function App() {
   const [organization, setOrganization] = useState(null);
   const [site, setSite] = useState(null);
   const [error, setError] = useState(null);
+  const [applications, setApplications] = useState([]);
 
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
@@ -37,7 +38,8 @@ function App() {
             token, setToken,
             userId, setUserId,
             organization, setOrganization,
-            site, setSite
+            site, setSite,
+            applications, setApplications
           }}
         >
           <BrowserRouter basename="/connexa-cli/comex">

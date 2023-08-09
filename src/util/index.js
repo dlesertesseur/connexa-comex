@@ -1,5 +1,5 @@
 const dynamicImport = async (path) => {
-  const {comp} = await import(path);
+  const {comp} = await import(`./${path}/index.jsx`);
   return(comp)
 };
 

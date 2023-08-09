@@ -1,12 +1,15 @@
 import { Box, Group, Stack, Text, UnstyledButton } from "@mantine/core";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppStateContext } from "../../context/AppStateContext";
 
 // eslint-disable-next-line react/prop-types
-const Option = ({ title, text, h = 60, icon = null, link }) => {
-
+const RoleAction = ({ title, text, h = 60, icon = null, link, applications}) => {
   const navigate = useNavigate();
-
+  const { setApplications } = useContext(AppStateContext);
+  
   const onClick = () => {
+    setApplications(applications);
     navigate(link);
   }
 
@@ -41,4 +44,4 @@ const Option = ({ title, text, h = 60, icon = null, link }) => {
   );
 };
 
-export default Option;
+export default RoleAction;
