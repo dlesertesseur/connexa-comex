@@ -13,7 +13,7 @@ import NotFound from "./pages/NotFound";
 import Main from "./pages/Main";
 
 function App() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [colorScheme, setColorScheme] = useState("light");
   const toggleColorScheme = (value) => setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
@@ -32,21 +32,31 @@ function App() {
         <Notifications />
         <AppStateContext.Provider
           value={{
-            user, setUser,
-            error, setError,
-            loading, setLoading,
-            token, setToken,
-            userId, setUserId,
-            organization, setOrganization,
-            site, setSite,
-            applications, setApplications
+            user,
+            setUser,
+            error,
+            setError,
+            loading,
+            setLoading,
+            token,
+            setToken,
+            userId,
+            setUserId,
+            organization,
+            setOrganization,
+            site,
+            setSite,
+            applications,
+            setApplications,
           }}
         >
           <BrowserRouter basename="/connexa-cli/comex">
             {error ? (
               <ResponceNotification
                 opened={error}
-                onClose={() => {setError(null)}}
+                onClose={() => {
+                  setError(null);
+                }}
                 code={error}
                 title={t("errors.title")}
                 text={error}

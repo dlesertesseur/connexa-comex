@@ -4,35 +4,39 @@ import { AnimatePresence } from "framer-motion";
 import FadeTrancition from "../components/Transition/FadeTrancition";
 import RolePage from "./RolePage";
 import AppInRolePage from "./AppInRolePage";
+import AppHeader from "../components/AppHeader";
 
 const AnimationRoutes = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence initial={true} mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route
-          path={"/"}
-          element={
-            <ProtectedRoute>
-              <FadeTrancition>
-                <RolePage />
-              </FadeTrancition>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={"applications"}
-          element={
-            <ProtectedRoute>
-              <FadeTrancition>
-                <AppInRolePage />
-              </FadeTrancition>
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-    </AnimatePresence>
+    <>
+      <AppHeader />
+      <AnimatePresence initial={true} mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route
+            path={"/"}
+            element={
+              <ProtectedRoute>
+                <FadeTrancition>
+                  <RolePage />
+                </FadeTrancition>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={"applications"}
+            element={
+              <ProtectedRoute>
+                <FadeTrancition>
+                  <AppInRolePage />
+                </FadeTrancition>
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </AnimatePresence>
+    </>
   );
 };
 
