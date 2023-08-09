@@ -1,17 +1,16 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { AnimatePresence } from "framer-motion";
+import { Stack } from "@mantine/core";
 import FadeTrancition from "../components/Transition/FadeTrancition";
 import RolePage from "./RolePage";
 import AppInRolePage from "./AppInRolePage";
-import AppHeader from "../components/AppHeader";
 
 const AnimationRoutes = () => {
   const location = useLocation();
 
   return (
-    <>
-      <AppHeader />
+    <Stack spacing={"xs"}>
       <AnimatePresence initial={true} mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route
@@ -36,7 +35,7 @@ const AnimationRoutes = () => {
           />
         </Routes>
       </AnimatePresence>
-    </>
+    </Stack>
   );
 };
 

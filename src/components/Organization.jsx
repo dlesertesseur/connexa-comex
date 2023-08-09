@@ -24,11 +24,12 @@ const Organization = () => {
   }, [organization, setSite]);
 
   return (
-    <Group>
-      <Text size={"lg"} weight={700}>
+    <Group spacing={"xs"}>
+      <Text size={"md"} weight={700}>
         {organization?.name}
       </Text>
       <Select
+      size="xs"
         data={data}
         value={selectedId}
         onChange={(e) => {
