@@ -9,7 +9,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useTranslation } from "react-i18next";
 import ResponceNotification from "./components/ResponceNotification";
 import SignIn from "./pages/SignIn";
-import NotFound from "./pages/NotFound";
+// import NotFound from "./pages/NotFound";
 import Main from "./pages/Main";
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
   const [site, setSite] = useState(null);
   const [error, setError] = useState(null);
   const [applications, setApplications] = useState([]);
+  const [activePage, setActivePage] = useState(null);
 
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
@@ -48,6 +49,8 @@ function App() {
             setSite,
             applications,
             setApplications,
+            activePage,
+            setActivePage,
           }}
         >
           <BrowserRouter basename="/connexa-cli/comex">
@@ -63,16 +66,16 @@ function App() {
               />
             ) : null}
             <Routes>
-              <Route path="*" element={<NotFound />} />
-              <Route exact path="/" element={<SignIn />} />
+              {/* <Route path="*" element={<NotFound />} /> */}
               <Route
-                path="/main/*"
+                path="main/*"
                 element={
                   <ProtectedRoute>
                     <Main />
                   </ProtectedRoute>
                 }
               />
+              <Route path="/" element={<SignIn />} />
             </Routes>
           </BrowserRouter>
         </AppStateContext.Provider>

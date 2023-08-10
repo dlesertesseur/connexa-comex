@@ -2,20 +2,25 @@ import { Container, Grid } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import { AppStateContext } from "../context/AppStateContext";
 import { IconAppsFilled } from "@tabler/icons-react";
+import { ActivePage } from "../config/values";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import RoleAction from "../components/OptionsMenu/RoleAction";
 import FadeTrancition from "../components/Transition/FadeTrancition";
+import AppInRolePage from "./AppInRolePage";
 
 const RolePage = () => {
   const location = useLocation();
-  const { site } = useContext(AppStateContext);
+  const { site, setActivePage } = useContext(AppStateContext);
   const [roles, setRoles] = useState([]);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     setRoles(site?.roles);
   }, [site]);
+
+  useEffect(() => {
+    setActivePage(ActivePage.role);
+  }, [setActivePage]);
 
   const createRoleAction = (o, index) => {
     const ret = (
@@ -26,9 +31,27 @@ const RolePage = () => {
           text={o.groupName}
           icon={<IconAppsFilled size={20} />}
           h={100}
-          link={`./applications`}
+          link={`${o.id}`}
         />
       </Grid.Col>
+    );
+
+    return ret;
+  };
+
+  const createRoleRoute = (a) => {
+    const ret = (
+      <Route
+        key={a.id}
+        path={`${a.id}/*`}
+        element={
+          <ProtectedRoute>
+            <FadeTrancition>
+              <AppInRolePage applications={a.applications}/>
+            </FadeTrancition>
+          </ProtectedRoute>
+        }
+      />
     );
 
     return ret;
@@ -38,7 +61,7 @@ const RolePage = () => {
     <Container size={"xl"}>
       <Routes location={location} key={location.pathname}>
         <Route
-          path={"/"}
+          path={"/*"}
           element={
             <ProtectedRoute>
               <FadeTrancition>
@@ -49,6 +72,7 @@ const RolePage = () => {
             </ProtectedRoute>
           }
         />
+        {roles ? roles.map((o) => createRoleRoute(o)) : null}
       </Routes>
     </Container>
   );

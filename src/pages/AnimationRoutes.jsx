@@ -4,7 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import { Stack } from "@mantine/core";
 import FadeTrancition from "../components/Transition/FadeTrancition";
 import RolePage from "./RolePage";
-import AppInRolePage from "./AppInRolePage";
+// import AppInRolePage from "./AppInRolePage";
 
 const AnimationRoutes = () => {
   const location = useLocation();
@@ -14,7 +14,8 @@ const AnimationRoutes = () => {
       <AnimatePresence initial={true} mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route
-            path={"/"}
+            index
+            path={"/*"}
             element={
               <ProtectedRoute>
                 <FadeTrancition>
@@ -23,8 +24,8 @@ const AnimationRoutes = () => {
               </ProtectedRoute>
             }
           />
-          <Route
-            path={"applications"}
+          {/* <Route
+            path={"applications/*"}
             element={
               <ProtectedRoute>
                 <FadeTrancition>
@@ -32,7 +33,7 @@ const AnimationRoutes = () => {
                 </FadeTrancition>
               </ProtectedRoute>
             }
-          />
+          /> */}
         </Routes>
       </AnimatePresence>
     </Stack>

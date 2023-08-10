@@ -53,7 +53,7 @@ const Main = () => {
         </Footer>
       }
       header={
-        <Header height={{ base: 100 , md:110}}>
+        <Header height={{ base: 104 , md:114}}>
           <AppHeader />
         </Header>
       }

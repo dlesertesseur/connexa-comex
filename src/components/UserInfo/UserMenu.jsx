@@ -50,7 +50,6 @@ const UserMenu = ({ compact = true }) => {
       <Menu.Target>
         <UnstyledButton
           bg={theme.colors.gray[2]}
-          mx={"xs"}
           py={3}
           sx={{
             borderTopLeftRadius: 36,

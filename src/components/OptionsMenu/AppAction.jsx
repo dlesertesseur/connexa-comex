@@ -1,15 +1,14 @@
-/* eslint-disable react/prop-types */
-import { Badge, Box, Group, Stack, Text, UnstyledButton } from "@mantine/core";
-import { useTranslation } from "react-i18next";
+import { Box, Group, Stack, Text, UnstyledButton } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const RoleAction = ({ title, text, h = 60, icon = null, link, applications }) => {
+const AppAction = ({ title, text, h = 60, icon = null, link}) => {
   const navigate = useNavigate();
-  const {t} = useTranslation();
+  
   const onClick = () => {
+    console.log("AppAction link ->", link);
     navigate(link);
-  };
+  }
 
   return (
     <UnstyledButton w={"100%"} mb={"xs"} onClick={onClick}>
@@ -30,17 +29,8 @@ const RoleAction = ({ title, text, h = 60, icon = null, link, applications }) =>
       >
         <Group position="apart" noWrap>
           <Stack spacing={"xs"} h={h} align={"flex-start"} justify={"space-between"}>
-            <Stack spacing={0}>
-              <Text align="start" size={"xs"} weight={500} color="dimmed">
-                {text}
-              </Text>
-              <Text size={"xl"} weight={600}>
-                {title}
-              </Text>
-            </Stack>
-            <Badge size="xs" variant="filled" color="indigo">
-              {`${t("label.applications")} ${applications.length}`}
-            </Badge>
+            <Text size={"xl"} weight={600}>{title}</Text>
+            <Text align="start" size={"xs"} weight={500} color="dimmed">{text}</Text>
           </Stack>
           <Stack spacing={"xs"} h={h} align={"flex-start"}>
             {icon}
@@ -51,4 +41,4 @@ const RoleAction = ({ title, text, h = 60, icon = null, link, applications }) =>
   );
 };
 
-export default RoleAction;
+export default AppAction;

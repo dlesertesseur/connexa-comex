@@ -42,7 +42,7 @@ export default function SignIn() {
     if (ret) {
       setUserId(ret.userId);
       setToken(ret.token);
-      navigate("/main");
+      navigate("main");
     }
 
     setInitialized(true);
